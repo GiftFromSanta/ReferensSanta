@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://b128p0pu0d2wd"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="2"]
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 2
+background_energy_multiplier = 2.0
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.5, 0.5, 1)
+ambient_light_energy = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+size = Vector3(22, 1, 22)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
+size = Vector3(22, 1, 22)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sgp6g"]
+radius = 0.6
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
+radius = 0.6
+height = 1.8
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 0, 0.353553, 0.612372, 0.707107, -0.353553, -0.612372, 0.707107, 0, 0, 0)
+light_energy = 1.8
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+omni_range = 15.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o5qli")
+
+[node name="floor" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+material_override = SubResource("StandardMaterial3D_0wfyh")
+mesh = SubResource("BoxMesh_sgp6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_tbgi4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0.5, 0.612372, -0.612372, 0, 0.707107, 0.707107, -14, 19, -14)
+current = true
+fov = 54.0
+
+[node name="santa" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+collision_layer = 0
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="santa"]
+mesh = SubResource("CapsuleMesh_sgp6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="santa"]
+shape = SubResource("CapsuleShape3D_o5qli")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 46.0
+text = "Очки: 0"
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 120.0
+offset_bottom = 76.0
+text = "Уровень: 1"
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 80.0
+offset_right = 140.0
+offset_bottom = 106.0
+text = "Монеты: 0"
+
+[node name="ShovelLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 110.0
+offset_right = 120.0
+offset_bottom = 136.0
+text = "Лопаты: 5"
+
+[node name="SuperPortalButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 110.0
+offset_right = 250.0
+offset_bottom = 141.0
+text = "Супер портал"
+
+[node name="MassClearButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 150.0
+offset_right = 300.0
+offset_bottom = 181.0
+text = "Массовая очистка: 1"
+
+[node name="SpeedResetButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 190.0
+offset_right = 300.0
+offset_bottom = 221.0
+text = "Сброс скорости: 1"
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 190.0
+offset_right = 120.0
+offset_bottom = 221.0
+text = "Пауза"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 120.0
+offset_bottom = 181.0
+text = "Рестарт"

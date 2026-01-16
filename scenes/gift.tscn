@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://44061conx6k1"]
+
+[ext_resource type="Script" uid="uid://dd8xvahn6bkvx" path="res://scripts/gift.gd" id="1_ioja6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gift"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gift"]
+albedo_color = Color(0.2, 0.8, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gift"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[node name="gift" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_ioja6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gift")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_gift")
+mesh = SubResource("BoxMesh_gift")

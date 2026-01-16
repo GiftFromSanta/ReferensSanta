@@ -1,0 +1,52 @@
+﻿# Godot 4+ specific ignores
+.godot/
+android/
+ios/
+web/
+linux/
+macos/
+windows/
+
+# Godot-specific ignores
+*.tmp
+*.import
+*.remap
+export_presets.cfg.bak
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# Temporary folders
+tmp/
+temp/
+
+# C# builds
+bin/
+obj/
+
+# .NET Core
+*.swp
+*.swo
+*~
+
+# Visual Studio cache directory
+.vs/
+
+# Visual Studio Code cache directory
+.vscode/
+
+# JetBrains Rider
+.idea/
+
+# OS-specific ignores
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
